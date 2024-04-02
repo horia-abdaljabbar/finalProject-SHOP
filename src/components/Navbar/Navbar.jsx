@@ -233,10 +233,10 @@ console.log(error);
             </div>
           </div>
         </nav>
-        {/* {(clickedLogin==true)?<div className="above"><Login/></div>:console.log("not login")}
-         { (clickedRegister==true) ?<Register/>: console.log("not register")} */}
-        {/* <h1 className="above">{aboveContent}</h1> */}
-      {/* </div> */}
+
+        
+        
+      
     </>
   );
 }

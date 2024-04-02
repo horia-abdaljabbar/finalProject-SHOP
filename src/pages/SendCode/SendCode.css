@@ -33,14 +33,19 @@
     background-image: linear-gradient(to right, #ffbf87 , rgb(98, 91, 233));
 }
 
-@media (min-width: 600px) and (max-width: 900px){
+@media (min-width: 320px) and (max-width: 900px){
     .sendCodeForm{        
-        width:50%;    
+        width:60%;    
+
+    }
+    .submitBtn{
+        width: 100px;
     }
 }
 
 @media(max-width: 599px){
     .sendCodeForm{        
-        width:80%;
+        width:97%;
     }
+    
 }

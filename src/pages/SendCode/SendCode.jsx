@@ -146,7 +146,7 @@ const handleForm = async (e) => {
             <NavLink className="resetPasswordBtn" to="/ForgetPassword"> Reset Password</NavLink>
           </div> */}
 
-<button type="submit" className="submitBtn pt-1 pb-1" disabled={(loader)?'dispaled':''}>
+<button type="submit" className="submitBtn pt-1 pb-1 w-50" disabled={(loader)?'dispaled':''}>
             {(!loader)?'Send Code':"wait to Send Code..."}
           </button>
         </div>

@@ -157,7 +157,7 @@ setTimeout(()=>setLoader(false),2500);
           onChange={handleInput}
         />
           <div className="col d-flex flex-column align-items-end">
-          <button type="submit" className="submitBtn pt-1 pb-1" disabled={(loader)?'disapled':''}>
+          <button type="submit" className="submitBtn pt-1 pb-1 " disabled={(loader)?'disapled':''}>
             {(!loader)?"Login":" wait to login again..."}
           </button>
          </div>
