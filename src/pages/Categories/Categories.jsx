@@ -59,12 +59,12 @@ if(!loader){
     <>
 
     <div className="container mt-5">
-            <div className="d-flex justify-content-between gap-5  flex-wrap">
+            <div className="d-flex justify-content-center gap-5  flex-wrap">
               {categories.map((category) => (
                 <div key={category._id}>
-                  <div className="col align-self-stretch d-flex">
+                  <div className="col align-self-stretch ">
                     <div
-                      className="card align-self-stretch shadow p-3 mb-5 bg-body rounded"
+                      className="card align-self-stretch shadow  mb-5 bg-body rounded"
                       style={{ width: "25rem" }}
                     >
                       <img

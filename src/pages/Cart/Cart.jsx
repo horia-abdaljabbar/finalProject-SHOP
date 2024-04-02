@@ -242,10 +242,10 @@ if(!loader)
         <div className="row">
           <div className="tableSection col-lg-9 col-md-12">
             <h4>shopping cart</h4>
-          <table className="table ">
+          <table className="table">
             <thead>
               <tr>
-                <th >product details</th>
+                <th scope="col">details</th>
                 <th scope="col">quantity</th>
                 <th scope="col">price</th>
                 <th scope="col">final price</th>
@@ -260,8 +260,8 @@ if(!loader)
                 >
                   <td scope="row" className="w-50">
                     <div className="d-flex flex-column gap-2">
-                      <span className="w-auto">{product.details.name} </span>
-                      <img src={product.details.mainImage.secure_url}></img>
+                      {/* <span className="w-auto">{product.details.name} </span> */}
+                      <img src={product.details.mainImage.secure_url} className="productImg"></img>
                     </div>
                   </td>
                   <td scope="row">

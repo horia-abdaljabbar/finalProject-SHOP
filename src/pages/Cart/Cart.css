@@ -31,6 +31,11 @@ img{
 .trashIcon{
     color: #ff851b ;
 }
+.productImg{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
 
 h4{
     border-bottom: 2px solid black;
@@ -56,13 +61,9 @@ h4{
     
 }
 
-@media screen and (max-width: 587px) {
+@media screen and (max-width: 573px) {
     .table{
-        width:40%;
+        width:100%;
     }
     
-@media screen and (max-width: 490px) {
-    .summary{
-        width:60%;
-    }
 }
