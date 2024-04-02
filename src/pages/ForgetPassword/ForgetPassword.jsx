@@ -117,9 +117,8 @@ setTimeout(()=>setLoader(false),2500);
 
   return  (
     <>
-    <p>forget pass</p>
       <form
-        className="loginForm shadow p-5 mb-5 bg-body rounded"
+        className="forgetPasswordForm shadow p-5 mb-5 mt-5 bg-body rounded"
         onSubmit={handleForm}
       >
                     <h1 className="authTitle">Reset Password</h1>

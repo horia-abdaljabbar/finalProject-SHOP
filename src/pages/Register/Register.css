@@ -18,6 +18,7 @@ input[type="email"]{
 
 input[type="password"]{
     padding: 5px 35px;
+    
 }
 
 input[type="file"]{
@@ -68,6 +69,11 @@ width:90%}
 
 @media(max-width: 599px){
     .registerForm{        
-        width:80%;
+        width:100%;
+        padding: 2px;
     }
+    input[type="file"]{
+    width:75%}
 }
+
+

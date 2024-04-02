@@ -123,7 +123,7 @@ const handleForm = async (e) => {
   return (
     <>
       <form
-        className="loginForm shadow p-5 mb-5 bg-body rounded"
+        className="sendCodeForm shadow p-5 mb-5 mt-5 bg-body rounded"
         onSubmit={handleForm}
       >
 

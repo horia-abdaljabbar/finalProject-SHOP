@@ -35,3 +35,16 @@ text-decoration-line: underline;
 color:#348fd5;
 font-size: 13px;
 }
+
+@media (min-width: 600px) and (max-width: 900px){
+    .loginForm{        
+        width:50%;    
+    }
+}
+
+@media(max-width: 599px){
+    .loginForm{        
+        width:80%;
+    }
+}
+

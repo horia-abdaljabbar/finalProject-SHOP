@@ -144,7 +144,7 @@ setTimeout(()=>setLoader(false),2500);
     <>
     {/* <p>welcome {userName}</p> */}
       <form
-        className="loginForm shadow p-5 mb-5 bg-body rounded"
+        className="loginForm shadow p-5 mb-5  mt-5  bg-body rounded"
         onSubmit={handleForm}
       >
                     <h1 className="authTitle">Login</h1>
