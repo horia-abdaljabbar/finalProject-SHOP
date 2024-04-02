@@ -68,7 +68,7 @@ if(!loader) {
       }}
       breakpoints={{
         // when window width is >= 576px
-            576: {
+            320: {
               slidesPerView: 2,
             },
         // when window width is >= 768px
