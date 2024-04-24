@@ -31,28 +31,9 @@ function Products() {
 
 
   let numbers = [];
-  console.log("num", numOfPages);
 
   const getProducts = async () => {
-    if(displayValue==2 &&currentPage==1){
-
-      setNumOfPages(4);
-  
-    
-  } if(displayValue==3 &&currentPage==1)
-  {
-  
-    setNumOfPages(3);
-  
-  }
-  
-  else if(displayValue==4 && currentPage==1)
-  {
-  
-    setNumOfPages(2);
-  
-   
-  }
+    setSortValue(sortValue);
 
    if((sortValue == 'name' || sortValue=='finalPrice' || sortValue=='discount') ){
     setLoader(true);
@@ -70,15 +51,18 @@ function Products() {
       } else {
         setNumOfPages(Math.ceil(data.total / parseInt(displayValue)));
       }
-  
+      console.log("# of pages in sort value:",numOfPages);
+
       setCurrentProducts(data.products.slice(0,parseInt(displayValue)));
-  
+
       for (let i = 1; i <= numOfPages; i++) {
         numbers.push(i);
-        console.log("num", numbers);
+        console.log("num new in sort:::", numbers);
+
         setTotalNums(numbers);
       }     
        setLoader(false);
+       
     } catch (error) {
       console.log(error);
       setLoader(false);
@@ -95,8 +79,50 @@ function Products() {
       });
     }
    }
+  else if((sortValue == 'default') ){
+    setLoader(true);
+try {
+  const { data } = await axios.get(
+    `${import.meta.env.VITE_API_URL}/products/?page=${currentPage}&limit=${displayValue}&sort=${sortValue}`
+  );
 
-    if( displayValue){
+  setProducts(data.products);
+  console.log("data after sorting",data.products);
+
+
+  if (totalNums.length == 0) {
+    setTotalNums([1,2,3]);
+  } else {
+    setNumOfPages(Math.ceil(data.total / parseInt(displayValue)));
+  }
+  console.log("# of pages in default:",numOfPages);
+
+  setCurrentProducts(data.products.slice(0,parseInt(displayValue)));
+
+  for (let i = 1; i <= numOfPages; i++) {
+    numbers.push(i);
+    console.log("num", numbers);
+    setTotalNums(numbers);
+  }     
+   setLoader(false);
+} catch (error) {
+  console.log(error);
+  setLoader(false);
+  toast.error(error.response.data.message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    transition: Slide,
+  });
+}
+   }
+
+ else   if( displayValue){
     setLoader(true);
 
     try {
@@ -112,12 +138,17 @@ setNumOfPages(Math.ceil(data.total / parseInt(displayValue)));
       
   
       setCurrentProducts(data.products.slice(0,parseInt(displayValue)));
-  
-      for (let i = 1; i <= numOfPages; i++) {
+numbers=[];
+      for (let i = 1; i <= Math.ceil(data.total / parseInt(displayValue)); i++) {
         numbers.push(i);
-        console.log("num", numbers);
+        console.log("num::::::::::::", numbers);
+        console.log("# of pages in display:",Math.ceil(data.total / parseInt(displayValue)));
+
         setTotalNums(numbers);
+        console.log("totalnum  in display:",numbers);
+
       }     
+
        setLoader(false);
     } catch (error) {
       console.log(error);
@@ -335,52 +366,46 @@ setNumOfPages(Math.ceil(data.total / parseInt(displayValue)));
     }
   };
 
-  const handleSearch=async(e)=>{
-    console.log(e.target.value);
-setSearchValue(e.target.value);
-setDisplayValue(3);
-  try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/products/?search=${searchValue}`
-      );
-      setErrors('no products matches what you want');
+//   const handleSearch=async(e)=>{
+//     console.log(e.target.value);
+// setSearchValue(e.target.value);
+//   try {
+//       const { data } = await axios.get(
+//         `${import.meta.env.VITE_API_URL}/products/?search=${searchValue}`
+//       );
+//       setErrors('no products matches what you want');
 
-      setProducts(data.products);
-      console.log("data after sorting",data.products);
-
-      if (totalNums.length == 0 &&currentPage==1 && displayValue==3) {
-        setTotalNums([1]);
-      } else {
-        setNumOfPages(Math.ceil(data.total / parseInt(displayValue)));
-      }
-  
-      setCurrentProducts(data.products.slice(0,parseInt(displayValue)));
-  
-      for (let i = 1; i <= numOfPages; i++) {
-        numbers.push(i);
-        console.log("num", numbers);
-        setTotalNums(numbers);
-      }     
-       setLoader(false);
+//       setProducts(data.products);
+//       console.log("data after searching",data.products);
+      
+//     setNumOfPages(Math.ceil(data.total / parseInt(displayValue)));
+//   for (let i = 1; i <= data.products.length-1; i++) {
+//         numbers.push(i);
+//         console.log("num ", numbers);
+//         setTotalNums(numbers);
+       
+//       }     
+      
+//        setLoader(false);
 
 
-      setLoader(false);
-    } catch (error) {
-      console.log(error);
-      setLoader(false);
-      toast.error(error.response.data.message, {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Slide,
-      });
-    }
-  }
+//       setLoader(false);
+//     } catch (error) {
+//       console.log(error);
+//       setLoader(false);
+//       toast.error(error.response.data.message, {
+//         position: "top-center",
+//         autoClose: 2000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         draggable: true,
+//         progress: undefined,
+//         theme: "dark",
+//         transition: Slide,
+//       });
+//     }
+//   }
 
 
   const handleSort=async(e)=>{
@@ -396,6 +421,9 @@ setDisplayValue(3);
 
     else if(e.target.value==3){
       setSortValue('discount');
+    }
+    else if(e.target.value==4){
+      setSortValue('');
     }
 
 console.log("sort",sortValue);
@@ -422,9 +450,9 @@ console.log("display",parseInt(e.target.value));
 
 //   })
 
-  useEffect(() => {
-    handleSearch();
-  }, [searchValue]);
+  // useEffect(() => {
+  //   handleSearch();
+  // }, [searchValue,currentPage]);
 
   useEffect(() => {
     handleSort();
@@ -437,19 +465,19 @@ console.log("display",parseInt(e.target.value));
   //   handleRange();
   // }, [userRange,currentPage]);
 
-  useEffect(() => {
-setSortValue('') ;
+//   useEffect(() => {
+// setSortValue('') ;
 
-}, [currentPage==1]);
+// }, [currentPage==1]);
 
   if (!loader) {
     return (
       <>
-          <div className="container">
+          <div className="container ">
 
           {(currentPage==1?<>
 
-            <nav className="extraNav d-flex justify-content-between align-items-center">
+            <nav className="extraNav d-flex justify-content-end align-items-center">
             <select
               className="form-select form-select-sm "
               aria-label="Small select example" name="userValue"
@@ -458,9 +486,11 @@ setSortValue('') ;
               <option value={1}>name</option>
               <option value={2}>finalPrice</option>
               <option value={3}>discount</option>
+              <option value={4} className="danger fw-bolder text-danger">default</option>
+
             </select>
 
-            <input
+            {/* <input
               type="text"
               className="search mb-4 "
               //   value={user.email}
@@ -469,7 +499,7 @@ setSortValue('') ;
               placeholder="search..."
               onChange={handleSearch}
               value={searchValue}
-            />
+            /> */}
           </nav> 
           <nav className="extraNav d-flex justify-content-between align-items-center  ">
             

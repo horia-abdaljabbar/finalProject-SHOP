@@ -145,6 +145,8 @@ console.log(error);
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon" />
+              <button type="button" className="btn-close btn-close-warning" data-bs-dismiss="offcanvas" aria-label="Close" />
+
             </button>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
               <a className="navbar-brand w-25" href="#">
